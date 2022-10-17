@@ -2,9 +2,9 @@ export default {
   ssr: true,
   target: 'server',
   head: {
-    title: 'ymm-nuxt2-ts',
+    title: 'ゆめみフロントエンドコーディング試験',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'ja-JP',
     },
     meta: [
       { charset: 'utf-8' },
