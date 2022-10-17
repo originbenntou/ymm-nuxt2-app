@@ -39,7 +39,7 @@ export default {
     '@nuxtjs/axios',
   ],
 
-  privateRuntimeConfig: {
+  publicRuntimeConfig: {
     apiKey: process.env.NODE_ENV === 'production' ? process.env.API_KEY : process.env.API_KEY,
   },
 
