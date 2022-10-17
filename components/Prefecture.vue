@@ -1,9 +1,9 @@
 <template>
-  <section>
+  <section class="prefecture">
     <h2>都道府県</h2>
-    <ul class="">
-      <li v-for="(prefecture, index) of prefectures" :key="index">
-        <label>
+    <ul class="prefecture-list">
+      <li class="prefecture-list-item" v-for="(prefecture, index) of prefectures" :key="index">
+        <label class="prefecture-list-item-checkbox">
           <input type="checkbox" @change="update(prefecture)" >
           <span>{{ prefecture.prefName }}</span>
         </label>
@@ -36,10 +36,8 @@ export default Vue.extend({
     }
   },
   async fetch(): Promise<void> {
-    const res = await this.$axios.get("/prefectures", {
-      headers: {"X-API-KEY": this.$config.apiKey}
-    })
-    res.data.result.forEach((data: Prefecture) => {
+    const res = await this.$client.get('/prefectures')
+    res.result.forEach((data: Prefecture) => {
       this.prefectures.push(data)
     })
   },
@@ -55,3 +53,10 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.prefecture-list-item {
+  float: left;
+  margin-right: 1rem;
+}
+</style>

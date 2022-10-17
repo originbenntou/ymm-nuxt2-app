@@ -1,9 +1,8 @@
 export default {
   ssr: true,
   target: 'server',
-  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'ymm-nuxt-app',
+    title: 'ymm-nuxt2-ts',
     htmlAttrs: {
       lang: 'en',
     },
@@ -16,36 +15,32 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
-  // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
-
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    "~/plugins/axios"
+  css: [
+    { src: '@assets/style.scss' }
   ],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
+  plugins: [
+    '@plugins/apiClient.ts'
+  ],
+
   components: true,
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
   ],
 
-  // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
   ],
 
+  publicRuntimeConfig: {
+    apiKey: process.env.NODE_ENV === 'production' ? process.env.API_KEY : process.env.API_KEY,
+  },
   privateRuntimeConfig: {
     apiKey: process.env.NODE_ENV === 'production' ? process.env.API_KEY : process.env.API_KEY,
   },
 
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: process.env.NODE_ENV === 'production' ? process.env.API_ENDPOINT : process.env.API_ENDPOINT,
     headers: {
       common: {
@@ -55,6 +50,5 @@ export default {
     retry: { retries: 3 },
   },
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 }

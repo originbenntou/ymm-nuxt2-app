@@ -8,9 +8,8 @@
 
 <script lang="ts">
 import Vue from "vue"
-import axios from "axios"
 import randomColor from "randomcolor"
-import { Prefecture, API_ENDPOINT } from "~/components/Prefecture.vue"
+import { Prefecture } from "~/components/Prefecture.vue"
 import LineChart from "~/components/LineChart.vue"
 
 
@@ -39,21 +38,21 @@ export default Vue.extend({
   watch: {
     // eslint-disable-next-line vue/no-arrow-functions-in-watch
     selected(value) {
+      console.log('watch')
       this.chartData = {
         labels: [],
         datasets: []
       }
       value.forEach(async (v: any) => {
-        const res = await this.$axios.$get(`/population/composition/perYear?prefCode=${v.prefCode}&cityCode=`, {
-          headers: {"X-API-KEY": this.$config.apiKey}
-        })
+        console.log('for')
+        const res = await this.$client.get(`/population/composition/perYear?prefCode=${v.prefCode}&cityCode=-`)
 
-        const labels = res.data.result.data[0].data.map((d: any) => {
+        const labels = res.result.data[0].data.map((d: any) => {
           return d.year
         })
         this.chartData.labels = labels
 
-        const values = res.data.result.data[0].data.map((d: any) => {
+        const values = res.result.data[0].data.map((d: any) => {
           return d.value
         })
         this.chartData.datasets.push({

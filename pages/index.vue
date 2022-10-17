@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="main">
     <Prefecture />
     <Population />
   </main>
@@ -12,3 +12,10 @@ export default Vue.extend({
   name: 'Index',
 })
 </script>
+
+<style lang="scss" scoped>
+.main {
+  width: 90%;
+  margin: auto;
+}
+</style>
