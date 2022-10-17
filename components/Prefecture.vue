@@ -1,5 +1,5 @@
 <template>
-  <section class="prefecture">
+  <nav class="prefecture">
     <h2>都道府県</h2>
     <ul class="prefecture-list">
       <li class="prefecture-list-item" v-for="(prefecture, index) of prefectures" :key="index">
@@ -9,7 +9,7 @@
         </label>
       </li>
     </ul>
-  </section>
+  </nav>
 </template>
 
 <script lang="ts">
@@ -55,6 +55,9 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.prefecture-list {
+  overflow: hidden;
+}
 .prefecture-list-item {
   float: left;
   margin-right: 1rem;

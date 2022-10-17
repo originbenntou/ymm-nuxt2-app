@@ -1,8 +1,6 @@
 <template>
   <section>
-    <div>
-      <LineChart :chart-data="chartData" :chart-options="chartOptions" />
-    </div>
+      <LineChart style="box-sizing: border-box" :chart-data="chartData" :chart-options="chartOptions" />
   </section>
 </template>
 
@@ -38,13 +36,11 @@ export default Vue.extend({
   watch: {
     // eslint-disable-next-line vue/no-arrow-functions-in-watch
     selected(value) {
-      console.log('watch')
       this.chartData = {
         labels: [],
         datasets: []
       }
       value.forEach(async (v: any) => {
-        console.log('for')
         const res = await this.$client.get(`/population/composition/perYear?prefCode=${v.prefCode}&cityCode=-`)
 
         const labels = res.result.data[0].data.map((d: any) => {
