@@ -11,7 +11,7 @@ export default Vue.extend({})
 
 <style lang="scss" scoped>
 header {
-  padding: .5rem 0;
+  padding: 0.5rem 0;
   background: #d3d3d3;
   display: flex;
   justify-content: center;

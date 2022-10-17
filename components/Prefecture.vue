@@ -2,9 +2,13 @@
   <nav class="prefecture">
     <h2>都道府県</h2>
     <ul class="prefecture-list">
-      <li class="prefecture-list-item" v-for="(prefecture, index) of prefectures" :key="index">
+      <li
+        v-for="(prefecture, index) of prefectures"
+        :key="index"
+        class="prefecture-list-item"
+      >
         <label class="prefecture-list-item-checkbox">
-          <input type="checkbox" @change="update(prefecture)" >
+          <input type="checkbox" @change="update(prefecture)" />
           <span>{{ prefecture.prefName }}</span>
         </label>
       </li>
@@ -13,12 +17,11 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
+import Vue from 'vue'
 
-
-export const API_ENDPOINT = "https://opendata.resas-portal.go.jp/api/v1"
+export const API_ENDPOINT = 'https://opendata.resas-portal.go.jp/api/v1'
 export type Prefecture = {
-  prefCode: string,
+  prefCode: string
   prefName: string
 }
 
@@ -32,7 +35,7 @@ export default Vue.extend({
   data(): ComponentDataType {
     return {
       prefectures: [],
-      selected: []
+      selected: [],
     }
   },
   async fetch(): Promise<void> {
@@ -47,10 +50,10 @@ export default Vue.extend({
   methods: {
     update(prefecture: string) {
       this.selected.includes(prefecture)
-        ? this.$store.commit("remove", { value: prefecture })
-        : this.$store.commit("add", { value: prefecture })
-    }
-  }
+        ? this.$store.commit('remove', { value: prefecture })
+        : this.$store.commit('add', { value: prefecture })
+    },
+  },
 })
 </script>
 

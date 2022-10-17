@@ -1,7 +1,7 @@
-import { Plugin, Context } from "@nuxt/types"
+import { Plugin, Context } from '@nuxt/types'
 
 export interface APIClientInterface {
-  get (url: string): Promise<any>
+  get(url: string): Promise<any>
 }
 
 const APIClientPlugin: Plugin = (ctx: Context, inject) => {
@@ -22,8 +22,8 @@ class APIClient implements APIClientInterface {
   async get(url: string): Promise<any> {
     return await this.axios.$get(url, {
       headers: {
-        'X-API-KEY': this.config.apiKey
-      }
+        'X-API-KEY': this.config.apiKey,
+      },
     })
   }
 }
